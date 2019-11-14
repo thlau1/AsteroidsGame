@@ -1,6 +1,6 @@
 Spaceship bob;//your variable declarations here
 Star [] num = new Star[500];
-Bullet abc;
+//Bullet abc;
 boolean wPressed, aPressed, dPressed, sPressed;
 public void setup() 
 {
@@ -10,7 +10,7 @@ public void setup()
 	wPressed = false;
 	size(600,600);
 	bob = new Spaceship();
-	abc = new Bullet(bob);
+	//abc = new Bullet(bob);
 	for(int i = 0; i<num.length;i++)
 	{
 		num[i] = new Star();
