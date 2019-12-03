@@ -1,6 +1,7 @@
-Spaceship bob;//your variable declarations here
+Spaceship sue;//your variable declarations here
 Star [] num = new Star[500];
-//Bullet abc;
+ArrayList <Asteroids> crash = new ArrayList <Asteroids>();
+ArrayList <Bullet> abc = new ArrayList <Bullet>();
 boolean wPressed, aPressed, dPressed, sPressed;
 public void setup() 
 {
@@ -9,37 +10,66 @@ public void setup()
 	dPressed = false;
 	wPressed = false;
 	size(600,600);
-	bob = new Spaceship();
+	sue = new Spaceship();
 	//abc = new Bullet(bob);
 	for(int i = 0; i<num.length;i++)
 	{
 		num[i] = new Star();
 	}
+	for(int i = 0; i < 8; i++)
+	{
+		crash.add(new Asteroids());
+	}
 }
 public void draw() 
 {
     background(0);
-    bob.show();
-    bob.move();
+    sue.show();
+    sue.move();
     for(int i = 0; i < num.length; i++)
     {
     	num[i].show();
     }
 	if(wPressed)
 	{
-		bob.accelerate(0.15);
+		sue.accelerate(0.10);
 	}
 	if(sPressed)
 	{
-		bob.accelerate(-0.15);
+		sue.accelerate(-0.10);
 	}
 	if(aPressed)
 	{
-		bob.turn(-5);
+		sue.turn(-5);
 	}
 	if(dPressed)
 	{
-		bob.turn(5);
+		sue.turn(5);
+	}
+	for(int i = 0; i < crash.size(); i++)
+	{
+		crash.get(i).show();
+		crash.get(i).move();
+	}
+	if(crash.size() < 8)
+	{
+		crash.add(new Asteroids());
+	}
+	for(int i = 0; i <abc.size(); i++)
+	{
+		abc.get(i).show();
+		abc.get(i).move();
+	}
+	for(int i = 0; i < crash.size(); i++)
+	{
+		for(int a = 0; a < abc.size(); a++)
+		{
+			if(dist((float)abc.get(a).getX(), (float)abc.get(a).getY(), (float)crash.get(i).getX(), (float)crash.get(i).getY()) < 25)
+			{
+				crash.remove(i);
+				abc.remove(a);
+			}
+		}
 	}
 }
 public void keyPressed()
@@ -62,11 +92,11 @@ public void keyPressed()
 	}
 	if(key == 'r')
 	{
-		bob.setX((int)(Math.random()*500));
-		bob.setY((int)(Math.random()*500));
-		bob.setPointDirection((int)(Math.random()*360));
-		bob.setDirectionX(0);
-		bob.setDirectionY(0);
+		sue.setX((int)(Math.random()*500));
+		sue.setY((int)(Math.random()*500));
+		sue.setPointDirection((int)(Math.random()*360));
+		sue.setDirectionX(0);
+		sue.setDirectionY(0);
 	}
 }
 public void keyReleased() 
@@ -88,8 +118,7 @@ public void keyReleased()
 		wPressed = false;
 	}
 }
-//public void mousePressed()
-//{
-	//abc.show();
-    //abc.move();
-//}
+public void mousePressed()
+{
+	abc.add(new Bullet(sue));
+}
