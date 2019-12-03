@@ -11,7 +11,6 @@ public void setup()
 	wPressed = false;
 	size(600,600);
 	sue = new Spaceship();
-	//abc = new Bullet(bob);
 	for(int i = 0; i<num.length;i++)
 	{
 		num[i] = new Star();
@@ -26,10 +25,12 @@ public void draw()
     background(0);
     sue.show();
     sue.move();
+    //stars
     for(int i = 0; i < num.length; i++)
     {
     	num[i].show();
     }
+    //movement
 	if(wPressed)
 	{
 		sue.accelerate(0.10);
@@ -46,25 +47,29 @@ public void draw()
 	{
 		sue.turn(5);
 	}
+	//asteroids
 	for(int i = 0; i < crash.size(); i++)
 	{
 		crash.get(i).show();
 		crash.get(i).move();
 	}
+	//keep 8 asteroids on screen at all times
 	if(crash.size() < 8)
 	{
 		crash.add(new Asteroids());
 	}
+	//bullets
 	for(int i = 0; i <abc.size(); i++)
 	{
 		abc.get(i).show();
 		abc.get(i).move();
 	}
+	//collsion of bullets and asteroids
 	for(int i = 0; i < crash.size(); i++)
 	{
 		for(int a = 0; a < abc.size(); a++)
 		{
-			if(dist((float)abc.get(a).getX(), (float)abc.get(a).getY(), (float)crash.get(i).getX(), (float)crash.get(i).getY()) < 25)
+			if(dist((float)(abc.get(a).getX()), (float)(abc.get(a).getY()), (float)(crash.get(i).getX()), (float)(crash.get(i).getY())) < 25)
 			{
 				crash.remove(i);
 				abc.remove(a);
@@ -74,6 +79,7 @@ public void draw()
 }
 public void keyPressed()
 {
+	//movement
 	if(key == 'a')
 	{
 		aPressed = true;
@@ -101,6 +107,7 @@ public void keyPressed()
 }
 public void keyReleased() 
 {
+	//movement
 	if(key == 'a')
 	{
 		aPressed = false;
@@ -120,5 +127,6 @@ public void keyReleased()
 }
 public void mousePressed()
 {
+	//shooting bullets
 	abc.add(new Bullet(sue));
 }
