@@ -77,6 +77,15 @@ public void draw()
 			}
 		}
 	}
+	//collision of ship and asteroids
+	for(int i = 0; i < crash.size(); i++)
+	{
+		if(dist((float)sue.getX(), (float)sue.getY(), (float)(crash.get(i).getX()), (float)(crash.get(i).getY())) < 25)
+		{
+			crash.remove(i);
+			break;
+		}
+	}
 }
 public void keyPressed()
 {
@@ -86,7 +95,7 @@ public void keyPressed()
 		aPressed = true;
 	}
 	if(key == 's')
-	{
+	{	
 		sPressed = true;
 	}
 	if(key == 'd')
