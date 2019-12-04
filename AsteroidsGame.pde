@@ -73,6 +73,7 @@ public void draw()
 			{
 				crash.remove(i);
 				abc.remove(a);
+				break;
 			}
 		}
 	}
