@@ -3,6 +3,8 @@ Star [] num = new Star[500];
 ArrayList <Asteroids> crash = new ArrayList <Asteroids>();
 ArrayList <Bullet> abc = new ArrayList <Bullet>();
 boolean wPressed, aPressed, dPressed, sPressed;
+int score = 0;
+int lives = 3;
 public void setup() 
 {
 	aPressed = false;
@@ -25,6 +27,23 @@ public void draw()
     background(0);
     sue.show();
     sue.move();
+	fill(255);
+	textSize(20);
+	text("Score = " + score, 50, 50);
+	text("Lives = " + lives, 50, 100);
+	if(lives <= 0)
+	{
+		textSize(50);
+		textAlign(CENTER);
+		text("Game Over", 300, 300);
+		return;
+	}
+	if(score == 1000)
+	{
+		textSize(50);
+		textAlign(CENTER);
+		text("Winner", 300, 300);		
+	}
     //stars
     for(int i = 0; i < num.length; i++)
     {
@@ -73,6 +92,7 @@ public void draw()
 			{
 				crash.remove(i);
 				abc.remove(a);
+				score += 10;
 				break;
 			}
 		}
@@ -83,6 +103,7 @@ public void draw()
 		if(dist((float)sue.getX(), (float)sue.getY(), (float)(crash.get(i).getX()), (float)(crash.get(i).getY())) < 25)
 		{
 			crash.remove(i);
+			lives--;
 			break;
 		}
 	}
