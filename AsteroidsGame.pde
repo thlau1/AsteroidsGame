@@ -42,7 +42,8 @@ public void draw()
 	{
 		textSize(50);
 		textAlign(CENTER);
-		text("Winner", 300, 300);		
+		text("Winner", 300, 300);	
+		return;	
 	}
     //stars
     for(int i = 0; i < num.length; i++)
