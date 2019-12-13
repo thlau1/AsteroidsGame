@@ -2,7 +2,7 @@ Spaceship sue;//your variable declarations here
 Star [] num = new Star[500];
 ArrayList <Asteroids> crash = new ArrayList <Asteroids>();
 ArrayList <Bullet> abc = new ArrayList <Bullet>();
-boolean wPressed, aPressed, dPressed, sPressed;
+boolean wPressed, aPressed, dPressed, sPressed;//, spa;
 int score = 0;
 int lives = 3;
 public void setup() 
@@ -83,6 +83,7 @@ public void draw()
 	{
 		abc.get(i).show();
 		abc.get(i).move();
+		abc.get(i).accelerate(2.0);
 	}
 	//collsion of bullets and asteroids
 	for(int i = 0; i < crash.size(); i++)
@@ -98,6 +99,11 @@ public void draw()
 			}
 		}
 	}
+	//bullet
+	//if(spa)
+	//{
+		//abc.add(new Bullet(sue));
+	//}
 	//collision of ship and asteroids
 	for(int i = 0; i < crash.size(); i++)
 	{
@@ -136,6 +142,9 @@ public void keyPressed()
 		sue.setDirectionX(0);
 		sue.setDirectionY(0);
 	}
+	//bullet
+	//if( key == ' ')
+		//spa = true;
 }
 public void keyReleased() 
 {
@@ -156,6 +165,9 @@ public void keyReleased()
 	{
 		wPressed = false;
 	}
+	//bullet
+	//if(key == ' ')
+		//spa = false;
 }
 public void mousePressed()
 {
